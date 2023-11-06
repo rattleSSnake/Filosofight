@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+import time
 
 
 class Prof:
@@ -22,7 +23,7 @@ class Prof:
         self.a_ete_touche = False
         self.temps_invincible = 2000
         self.has_swapped_texture = False
-        self.texture_hurt = pygame.image.load("./Assets/Textures/HURT.png").convert()
+        self.texture_hurt = pygame.image.load("./Assets/Textures/HURT.png")
         self.textures = [self.texture, self.texture_hurt]
         self.hurt_timer = 0
         # Crayon
@@ -115,19 +116,19 @@ class Prof:
         assert type(screen) == pygame.Surface, "La surface est invalide."
         keys = pygame.key.get_pressed()
         if keys[pygame.K_z] and self.player_pos.y >= 0:
-            self.player_pos.y -= 300 * dt
+            self.player_pos.y -= 500 * dt
         if (
             keys[pygame.K_s]
             and self.player_pos.y + self.LARGEUR <= screen.get_height() // 2
         ):
-            self.player_pos.y += 300 * dt
+            self.player_pos.y += 500 * dt
         if keys[pygame.K_q] and self.player_pos.x >= 0:
-            self.player_pos.x -= 300 * dt
+            self.player_pos.x -= 400 * dt
             if self.orientation == "RIGHT":
                 self.orientation = "LEFT"
                 self.texture = pygame.transform.flip(self.texture.copy(), True, False)
         if keys[pygame.K_d] and self.player_pos.x + self.LONGUEUR <= screen.get_width():
-            self.player_pos.x += 300 * dt
+            self.player_pos.x += 400 * dt
             if self.orientation == "LEFT":
                 self.orientation = "RIGHT"
                 self.texture = pygame.transform.flip(self.texture.copy(), True, False)
@@ -189,13 +190,13 @@ class Prof:
         assert type(screen) == pygame.Surface, "La surface est invalide."
         font = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 20)
         font2 = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 12)
-        text = font.render(f"Vie  {self.vie}", True, "white")
+        text = font.render(f"Vie  {self.vie}", True, "black")
         if pygame.time.get_ticks() - self.last_crayon <= self.crayon_cadence_de_tir:
-            crayon = font2.render(f"[F] {round(self.crayon_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_crayon)/1000, 1)}", True, "white")
+            crayon = font2.render(f"[F] {round(self.crayon_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_crayon)/1000, 1)}", True, "black")
         else:
             crayon = font2.render(f"[F] PRET", True, "green")
         if pygame.time.get_ticks() - self.last_citation <= self.citation_cadence_de_tir:
-            citation = font2.render(f"[G] {round(self.citation_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_citation)/1000, 1)}", True, "white")
+            citation = font2.render(f"[G] {round(self.citation_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_citation)/1000, 1)}", True, "black")
         else:
             citation = font2.render(f"[G] PRET", True, "green")
         screen.blit(text, (10, 20))
@@ -344,14 +345,14 @@ class Eleve:
         assert type(screen) == pygame.Surface, "La surface est invalide."
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and self.player_pos.y >= screen.get_height() // 2:
-            self.player_pos.y -= 300 * dt
+            self.player_pos.y -= 350 * dt
         if (
             keys[pygame.K_DOWN]
             and self.player_pos.y + self.LARGEUR <= screen.get_height()
         ):
-            self.player_pos.y += 300 * dt
+            self.player_pos.y += 350 * dt
         if keys[pygame.K_LEFT] and self.player_pos.x >= 0:
-            self.player_pos.x -= 300 * dt
+            self.player_pos.x -= 350 * dt
             if self.orientation == "RIGHT":
                 self.orientation = "LEFT"
                 self.texture = pygame.transform.flip(self.texture.copy(), True, False)
@@ -359,7 +360,7 @@ class Eleve:
             keys[pygame.K_RIGHT]
             and self.player_pos.x + self.LONGUEUR <= screen.get_width()
         ):
-            self.player_pos.x += 300 * dt
+            self.player_pos.x += 350 * dt
             if self.orientation == "LEFT":
                 self.orientation = "RIGHT"
                 self.texture = pygame.transform.flip(self.texture.copy(), True, False)
@@ -427,13 +428,13 @@ class Eleve:
         assert type(screen) == pygame.Surface, "La surface est invalide."
         font = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 20)
         font2 = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 12)
-        text = font.render(f"Vie  {self.vie}", True, "white")
+        text = font.render(f"Vie  {self.vie}", True, "black")
         if pygame.time.get_ticks() - self.last_crayon <= self.crayon_cadence_de_tir:
-            crayon = font2.render(f"[M] {round(self.crayon_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_crayon)/1000, 1)}", True, "white")
+            crayon = font2.render(f"[M] {round(self.crayon_cadence_de_tir/1000-(pygame.time.get_ticks() - self.last_crayon)/1000, 1)}", True, "black")
         else:
             crayon = font2.render(f"[M] PRET", True, "green")
         if pygame.time.get_ticks() - self.last_table <= self.table_cadence:
-            table = font2.render(f"[L] {round(self.table_cadence/1000-(pygame.time.get_ticks() - self.last_table)/1000, 1)}", True, "white")
+            table = font2.render(f"[L] {round(self.table_cadence/1000-(pygame.time.get_ticks() - self.last_table)/1000, 1)}", True, "black")
         else:
             color = "green" if len(self.tables_on_screen) < 3 else "red"
             table = font2.render(f"[L] PRET", True, color)
@@ -966,6 +967,9 @@ class Main:
         self.playing = True
         self.delta_t = 0.0
         self.gagnant = ""
+        self.soissantièmes = 60
+        self.secondes = 4
+        self.minutes = 0
 
         # Création de l'élève et du prof
         self.prof = Prof(500, (self.LONGUEUR // 2, self.LARGEUR // 4), 132, 132)
@@ -992,6 +996,10 @@ class Main:
             gagnant = self.prof.est_mort()[1].get_object_type()
             sfx.play_sfx("GAME_OVER", 6)
             return False, gagnant
+        elif self.minutes <= 0 and self.secondes <= 0 and self.soissantièmes <= 0:  # TODO régler BUG timer
+            gagnant = "PROF"
+            sfx.play_sfx("GAMEOVER", 6)
+            return False, gagnant
         else:
             return True, ""
 
@@ -1004,6 +1012,21 @@ class Main:
             self.__init__(self.LONGUEUR, self.LARGEUR)
         if keys[pygame.K_ESCAPE]:
             self.running = False
+
+    def timer(self):
+        """
+        """
+        # chronomètre
+        self.soissantièmes -= 1
+        if self.soissantièmes == 0:
+            self.secondes -= 1
+            self.soissantièmes = 60
+        if self.secondes == 0:
+            self.minutes -= 1
+            self.secondes = 59
+        font = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 15)
+        text = font.render(f"TIME {self.minutes}:{self.secondes}", True, "black")
+        self.screen.blit(text, (10, self.LARGEUR//2+text.get_height()//2))
 
     def game(self):
         """
@@ -1020,11 +1043,14 @@ class Main:
             # On remplit l'écran avec le fond d'écran pour tout effacer
             self.screen.blit(self.background, (0,0))
 
-            # Affichage des images (joueurs)
-            self.prof.draw(self.screen)
-            self.eleve.draw(self.screen)
 
             if self.playing:
+                # Timer
+                self.time_fin = time.time()
+                # Affichage des images (joueurs)
+                self.prof.draw(self.screen)
+                self.eleve.draw(self.screen)
+
                 # Mouvement des images (joueurs)
                 self.prof.movement(self.delta_t, self.screen)
                 self.eleve.movement(self.delta_t, self.screen)
@@ -1078,18 +1104,22 @@ class Main:
             # Affichage HUD (Affichage Tête-Haute)
             self.prof.affiche_hud(self.screen)
             self.eleve.affiche_hud(self.screen)
+            self.timer()
 
             # Cas de game over
             if not self.playing:
                 font = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 32)
                 font2 = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 25)
                 font3 = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 15)
-                text = font.render(f"GAME OVER", True, "white",)
-                text2 = font2.render(f"{self.gagnant} WINS", True, "white",)
-                text3 = font3.render(f"[R] POUR RESTART", True, "white",)
-                self.screen.blit(text, (self.LONGUEUR//2-(text.get_width()//2), self.LARGEUR//2-(text.get_height()//2)))
-                self.screen.blit(text2, (self.LONGUEUR//2-(text2.get_width()//2), self.LARGEUR//2-(text2.get_height()//2)+text.get_height()))
-                self.screen.blit(text3, (self.LONGUEUR//2-(text3.get_width()//2), self.LARGEUR//2-(text3.get_height()//2)+2*text.get_height()))
+                text = font.render(f"GAME OVER", True, "black",)
+                text2 = font2.render(f"{self.gagnant} WINS", True, "black")
+                text3 = font3.render(f"[R] POUR RESTART", True, "black")
+                bac = pygame.transform.scale(pygame.image.load("./Assets/Textures/BAC.png"), (2000//4,1414//4))
+                if self.gagnant == "ELEVE":
+                    self.screen.blit(bac, (self.LONGUEUR//2-bac.get_width()//2, 300))
+                self.screen.blit(text, (self.LONGUEUR//2-(text.get_width()//2), self.LARGEUR//2-(text.get_height()//2)-150))
+                self.screen.blit(text2, (self.LONGUEUR//2-(text2.get_width()//2), self.LARGEUR//2-(text2.get_height()//2)+text.get_height()-150))
+                self.screen.blit(text3, (self.LONGUEUR//2-(text3.get_width()//2), self.LARGEUR//2-(text3.get_height()//2)+2*text.get_height()-150))
                 self.restart_manager()
 
             # flip() met à jour l'écran après l'affichage des images
