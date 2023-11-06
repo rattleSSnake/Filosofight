@@ -5,6 +5,7 @@
 Jeu en un contre un où un __ELEVE__ (Joueur 1 - Flèches directionnelles) affronte un __PROF DE PHILO__ (Joueur 2 - ZQSD).
 Le combat est effectué à la manière d'un bossfight, en d'autres termes, le prof de philo est plus puissant mais plus lent que l'élève.
 L'écran est divisé horizontalement en deux parties, celle du haut étant celle du prof de philo, celle du bas de l'élève.
+Il y a un timer de 2 minutes 30, au bout duquel le Prof gagne si l'élève n'a pas réussi à vaincre le Prof (cela incite le joueur à être agressif et de prendre des risques car son principal avantage est de jouer une stratégie défensive, cas où il gagnerait presque à chaque fois s'il n'y avait pas de timer.)
 
 ### PROF DE PHILO:
 
@@ -152,6 +153,12 @@ __NOTE 2:__ Il n'y a pas de documentation pour les __Getters__, les __Setters__ 
     def restart_manager(self):
         """
         Quand elle est appelée, cette méthode attend l'appui de la touche R pour réinitialiser le jeu à zéro.
+        """
+        ...
+
+    def timer(self):
+        """
+        Prend en charge le calcul du temps et l'affichage du temps sur l'affichage tête haute.
         """
         ...
 

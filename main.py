@@ -391,10 +391,6 @@ class Eleve:
         ) and (len(self.tables_on_screen) < 3):
             self.lance_table(screen)
             self.last_table = pygame.time.get_ticks()
-        else:
-            # TODO Play sound of error
-            pass
-
         self.invincibilite()
 
     def lance_crayon(self):
@@ -968,8 +964,8 @@ class Main:
         self.delta_t = 0.0
         self.gagnant = ""
         self.soissantièmes = 60
-        self.secondes = 4
-        self.minutes = 0
+        self.secondes = 29
+        self.minutes = 2
 
         # Création de l'élève et du prof
         self.prof = Prof(500, (self.LONGUEUR // 2, self.LARGEUR // 4), 132, 132)
@@ -996,7 +992,7 @@ class Main:
             gagnant = self.prof.est_mort()[1].get_object_type()
             sfx.play_sfx("GAME_OVER", 6)
             return False, gagnant
-        elif self.minutes <= 0 and self.secondes <= 0 and self.soissantièmes <= 0:  # TODO régler BUG timer
+        elif self.minutes <= 0 and self.secondes >= 55:
             gagnant = "PROF"
             sfx.play_sfx("GAMEOVER", 6)
             return False, gagnant
@@ -1015,6 +1011,7 @@ class Main:
 
     def timer(self):
         """
+        Prend en charge le calcul du temps et l'affichage du temps sur l'affichage tête haute.
         """
         # chronomètre
         self.soissantièmes -= 1
@@ -1025,8 +1022,8 @@ class Main:
             self.minutes -= 1
             self.secondes = 59
         font = pygame.font.Font("./Assets/Font/ARCADE_N.ttf", 15)
-        text = font.render(f"TIME {self.minutes}:{self.secondes}", True, "black")
-        self.screen.blit(text, (10, self.LARGEUR//2+text.get_height()//2))
+        text = font.render(f"TIME {self.minutes}:{self.secondes}", True, "white")
+        self.screen.blit(text, (10, self.LARGEUR//2+text.get_height()//2+80))
 
     def game(self):
         """
@@ -1104,7 +1101,8 @@ class Main:
             # Affichage HUD (Affichage Tête-Haute)
             self.prof.affiche_hud(self.screen)
             self.eleve.affiche_hud(self.screen)
-            self.timer()
+            if self.playing:
+                self.timer()
 
             # Cas de game over
             if not self.playing:
