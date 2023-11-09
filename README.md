@@ -2,7 +2,7 @@
 
 #### Projet 1 NSI - Terminale
 
-Jeu en un contre un où un __ELEVE__ (Joueur 1 - Flèches directionnelles) affronte un __PROF DE PHILO__ (Joueur 2 - ZQSD).
+Jeu en un contre un où un __ELEVE__ (Joueur 1 - Flèches directionnelles, [M], [L]) affronte un __PROF DE PHILO__ (Joueur 2 - ZQSD, [F], [G]).
 Le combat est effectué à la manière d'un bossfight, en d'autres termes, le prof de philo est plus puissant mais plus lent que l'élève.
 L'écran est divisé horizontalement en deux parties, celle du haut étant celle du prof de philo, celle du bas de l'élève.
 Il y a un timer de 2 minutes 30, au bout duquel le Prof gagne si l'élève n'a pas réussi à vaincre le Prof (cela incite le joueur à être agressif et de prendre des risques car son principal avantage est de jouer une stratégie défensive, cas où il gagnerait presque à chaque fois s'il n'y avait pas de timer.)
@@ -15,7 +15,7 @@ Il y a un timer de 2 minutes 30, au bout duquel le Prof gagne si l'élève n'a p
 ### ELEVE:
 
 - __Lancer de crayons__ (touche M). Lancers à vitesse plus rapide et cadence de tir rapide. Inflige 20 dégâts car l'Élève utilise un pistolet à crayons.
-- Peut __poser une table__ devant lui (touche L) qui lui sert de bouclier temporaire. La table peut absorber 3 attaques de crayon, ou une citation et demie avant de se casser. Cooldown de plusieurs secondes. L'élève ne peut avoir que trois table sur l'écran en même temps.
+- Peut __poser une table__ devant lui (touche L) qui lui sert de bouclier temporaire. La table peut absorber 3 attaques de crayon, ou une citation avant de se casser. Cooldown de plusieurs secondes. L'élève ne peut avoir que trois table sur l'écran en même temps.
 
 ## Classes utilisées:
 
@@ -170,5 +170,5 @@ __NOTE 2:__ Il n'y a pas de documentation pour les __Getters__, les __Setters__ 
 
 ## Crédits
 
-Thomas, Vincent, Diego
+Thomas, Vincent, Diego\
 NSI Terminale, 2023
