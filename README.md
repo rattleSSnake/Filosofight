@@ -14,8 +14,8 @@ Il y a un timer de 2 minutes 30, au bout duquel le Prof gagne si l'élève n'a p
 
 ### ELEVE:
 
-- __Lancer de crayons__ (touche M). Lancers à vitesse plus rapide et cadence de tir rapide. Inflige 20 dégâts car l'Élève utilise un pistolet à crayons.
-- Peut __poser une table__ devant lui (touche L) qui lui sert de bouclier temporaire. La table peut absorber 3 attaques de crayon, ou une citation et demie avant de se casser. Cooldown de plusieurs secondes. L'élève ne peut avoir que trois table sur l'écran en même temps.
+- __Lancer de crayons__ (touche M). Lancers à vitesse plus rapide et cadence de tir rapide. Inflige 25 dégâts car l'Élève utilise un pistolet à crayons.
+- Peut __poser une table__ devant lui (touche L) qui lui sert de bouclier temporaire. La table peut absorber 5 attaques de crayon, ou une citation + 1 crayon avant de se casser. Cooldown de plusieurs secondes. L'élève ne peut avoir que trois table sur l'écran en même temps.
 
 ## Classes utilisées:
 
@@ -30,14 +30,14 @@ Il y a un timer de 2 minutes 30, au bout duquel le Prof gagne si l'élève n'a p
 ## Méthodes:
 
 __NOTE:__ Presque toutes les classes possèdent des méthodes dont l'utilité est la même. En outre, utiliser l'héritage de classe aurait été utile. Dû à un manque de temps il n'a pas été possible pour nous de transformer tout le programme, donc il existe des fonctions similaires un peu partout.
-__NOTE 2:__ Il n'y a pas de documentation pour les __Getters__, les __Setters__ et les __ __init__ __() dans le programme, afin d'économiser du temps.
+__NOTE 2:__ Il n'y a pas de documentation pour les __Getters__, les __Setters__ et les __ __init__ __() dans le programme, afin d'économiser du temps. Ceux-ci, en outre, ne sont présents que si nécessaires. Il n'y a pas de GETTER et de SETTER pour des variables qui ne sont pas nécessitées ailleurs que dans la classe même.
 
 ##### Méthodes communes à tout sprite
 
     def movement(self, dt: float, screen:pygame.Surface):
         """
         Permet de faire changer les coordonnées de l'instance de la classe, basé sur les commandes du clavier ou son comportement.\n
-        Paramètre: dt (float), delta t (temps s'étant écoulé depuis la dernière frame), sert de coefficient pour le mouvement, 
+        Paramètre: delta t (temps s'étant écoulé depuis la dernière frame, inutilisé dans le mouvement des joueurs), sert de coefficient pour le mouvement, 
         screen (pygame.Surface) surface sur laquelle imprimer l'instance de la classe.
         """
         ...
